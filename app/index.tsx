@@ -1,10 +1,6 @@
 import { Text, ScrollView, View, StyleSheet, Keyboard } from "react-native";
-
-import { Link, router } from "expo-router";
-
 import CustomModal from "@/components/CustomModal";
 import Task from "@/components/Task";
-import Task2 from "@/components/Task2";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -15,7 +11,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useEffect, useState } from "react";
-import { StatusBar } from "expo-status-bar";
 
 type Task = {
   title: string;
@@ -90,37 +85,26 @@ export default function Index() {
     console.log("Delete Task" + index);
     //wait for 1 sec
 
-    // setTimeout(() => {
-    //   let newTasks = tasks.filter((task) => task.index !== index);
-    // }, 1000);
-
-    // // Copy the tasks array
-    // // Remove the task at the given index
-    // let newTasks = tasks.filter((task) => task.index !== index);
-    // // Update the tasks array
-    // setTasks(newTasks);
-    // console.log(newTasks.length);
+    // Copy the tasks array
+    // Remove the task at the given index
+    let newTasks = tasks.filter((task) => task.index !== index);
+    // Update the tasks array
+    setTasks(newTasks);
+    console.log(newTasks.length);
   };
 
   const handleUpdateTask = (index: number, updatedTask: Task) => {
     // Copy the tasks array
-    console.log("Update Task" + index);
-    console.log(tasks);
+    // console.log("Update Task" + index);
+    // console.log(tasks);
     // Update the task at the given index
     let newTasks = tasks.map((task) =>
       task.index === index ? updatedTask : task
     );
     // Update the tasks array
-    console.log(newTasks);
+    // console.log(newTasks);
     setTasks(newTasks);
     setTask({ title: "", description: "", status: false, index: -1 });
-  };
-
-  const handleTaskClick = (task: Task) => {
-    router.push({
-      pathname: "/modal",
-      params: { title: task.title, description: task.description },
-    });
   };
 
   const handleTaskClick2 = (task: Task) => {
@@ -160,7 +144,7 @@ export default function Index() {
               //   <Task text={task.title} />
               // </TouchableOpacity>
               // <Task key={index} text={task.title} />
-              <Task2
+              <Task
                 key={task.index}
                 task={task}
                 deleteTask={handleDeleteTask}
@@ -237,6 +221,7 @@ const styles = StyleSheet.create({
   queryWrapper: {
     // position: "absolute",
     // bottom: 60,
+    marginTop: 20,
     paddingVertical: 10,
 
     flexDirection: "row",
@@ -253,6 +238,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#C0C0C0",
     borderWidth: 1,
+    fontSize: 20,
   },
   addWrapper: {
     position: "absolute",

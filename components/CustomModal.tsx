@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { Stack } from "expo-router";
+import { Keyboard } from "react-native";
 
 type Task = {
   title: string;
@@ -114,7 +115,8 @@ export default function CustomModal({
             multiline={true}
             // numberOfLines={20}
             value={task.description}
-            returnKeyLabel="Done"
+            // returnKeyType="done"
+            // onSubmitEditing={() => Keyboard.dismiss()} // Ensure keyboard is dismissed
           />
         </ScrollView>
       </View>
@@ -177,8 +179,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: "#C0C0C0",
     borderWidth: 1,
+    fontSize: 20,
   },
   inputDescription: {
+    fontSize: 20,
     height: 400,
     width: "100%",
     paddingVertical: 15,
