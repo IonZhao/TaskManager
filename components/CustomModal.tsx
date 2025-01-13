@@ -5,8 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  Modal,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { Stack } from "expo-router";
@@ -14,41 +15,46 @@ import { Stack } from "expo-router";
 type Task = {
   title: string;
   description: string;
-  status: string;
+  status: boolean;
+  index: number;
 };
 
 type props = {
-  task?: Task;
+  oldTask?: Task;
   addTask: (task: Task) => void;
+  updateTask: (index: number, task: Task) => void;
+  onRequestClose: () => void;
+  visible: boolean;
 };
 
-export default function Modal({ addTask }: props) {
-  const params = useLocalSearchParams();
+export default function CustomModal({
+  oldTask,
+  addTask,
+  updateTask,
+  onRequestClose,
+  visible,
+}: props) {
+  const [task, setTask] = useState<Task>(
+    oldTask || { title: "", description: "", status: false, index: -1 }
+  );
+  // const [task, setTask] = useState<Task>(
+  //   oldTask || { title: "", description: "" }
+  // );
 
-  const [task, setTask] = useState<Task>({
-    title: params.title || "",
-    description: params.description || "",
-    status: params.status || "",
-  });
+  // if the props change, update the task
+  useEffect(() => {
+    if (oldTask) {
+      setTask(oldTask);
+    }
+  }, [oldTask]);
 
   return (
-    <View>
-      {/* <Stack.Screen
-        // component={Modal}
-        options={{
-          // title: "Task",
-          headerTitle: "NewList",
-        }}
-      /> */}
-      {/* <Pressable
-        style={styles.button}
-        onPress={() => {
-          console.log("Done Task");
-        }}
-      >
-        <Text style={styles.textStyle}>Done</Text>
-      </Pressable> */}
-      {/* <Text style={styles.textStyle}>Cancel</Text> */}
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visible}
+      onRequestClose={onRequestClose}
+    >
       {/* <BodyScrollView></BodyScrollView> */}
       {/* <ScrollView contentContainerStyle={styles.scrollViewContent}> */}
       <View style={styles.modalContent}>
@@ -57,7 +63,7 @@ export default function Modal({ addTask }: props) {
             <Pressable
               style={styles.button}
               onPress={() => {
-                router.back();
+                onRequestClose();
                 console.log("Cancel Task");
               }}
             >
@@ -69,7 +75,22 @@ export default function Modal({ addTask }: props) {
               style={styles.button}
               onPress={() => {
                 console.log("Done Task");
-                addTask(task);
+                if (task.title !== "") {
+                  if (task.index !== -1) {
+                    updateTask(task.index, task);
+                  } else {
+                    addTask(task);
+                  }
+                  setTask({
+                    title: "",
+                    description: "",
+                    status: false,
+                    index: -1,
+                  });
+                } else {
+                  alert("Task title cannot be empty");
+                }
+                onRequestClose();
               }}
             >
               <Text style={styles.textStyle}>Done</Text>
@@ -82,7 +103,7 @@ export default function Modal({ addTask }: props) {
             placeholder={"Task Title"}
             onChangeText={(text) => setTask({ ...task, title: text })}
             value={task.title}
-            autoFocus={task.title === ""}
+            autoFocus={task.index === -1}
           />
 
           {/* <Text>Description</Text> */}
@@ -99,26 +120,29 @@ export default function Modal({ addTask }: props) {
       </View>
 
       {/* </ScrollView> */}
-    </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
   modalContent: {
     height: "100%",
-    // backgroundColor: "#FFF",
+    backgroundColor: "#FFF",
+    top: "5%",
     padding: 15,
     borderRadius: 10,
-    flexDirection: "column",
+    // flexDirection: "column",
     // alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     // marginBottom: 20,
   },
 
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    // backgroundColor: "#f8f8f8",
     alignItems: "center",
+    borderBottomColor: "#ddd",
     marginBottom: 20,
   },
 
@@ -126,7 +150,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 10,
   },
 
   button: {
@@ -134,11 +157,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+
     // backgroundColor: "#2196F3",
   },
 
   textStyle: {
-    color: "blue",
+    color: "#007aff",
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 20,

@@ -10,10 +10,13 @@ export default function RootLayout() {
       <Stack.Screen
         name="modal"
         options={{
+          headerTitle: "Details",
           // title: "Modal",
           // headerShown: false,
           presentation: "modal",
+
           headerShown: false,
+          headerShadowVisible: false,
         }}
       />
     </Stack>
