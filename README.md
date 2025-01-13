@@ -1,6 +1,14 @@
-# Welcome to your Expo app 👋
+# Welcome to Task Manager 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) project with typescript.
+
+
+
+## Video Presentation
+
+https://youtube.com/shorts/suTlhkuX-3c?feature=share
+
+
 
 ## Get started
 
@@ -25,26 +33,34 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
 
-When you're ready, run:
 
-```bash
-npm run reset-project
-```
+## Screenshot Overview
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+#### 1. Task List
 
-## Learn more
+![20250113_231549000_iOS](README.assets/20250113_231549000_iOS.png)
 
-To learn more about developing your project with Expo, look at the following resources:
+#### 2. Add New Tasks
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+![20250113_150645000_iOS](README.assets/20250113_150645000_iOS.png)
 
-## Join the community
+#### 3. Edit Task
 
-Join our community of developers creating universal apps.
+![20250113_231907000_iOS](README.assets/20250113_231907000_iOS.png)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+#### 4. Delete Task
+
+![20250113_231623000_iOS](README.assets/20250113_231623000_iOS.png)
+
+#### 5.Toggle Status
+
+![20250113_231616000_iOS](README.assets/20250113_231616000_iOS.png)
+
+#### 6. Detail Screen
+
+![20250113_231907000_iOS](README.assets/20250113_231907000_iOS-17368109434818.png)
+
+#### 7. Search Functionality
+
+![20250113_232136000_iOS](README.assets/20250113_232136000_iOS.png)

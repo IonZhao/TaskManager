@@ -21,28 +21,34 @@ type Task = {
 
 const dummyTasks: Task[] = [
   {
-    title: "Task1",
+    title: "Communicate with the professor about the project😥",
     description: "This is the first task",
     status: false,
     index: 0,
   },
   {
-    title: "Task2",
+    title: "Email the professor about the project😊",
     description: "This is the second task",
     status: false,
     index: 1,
   },
   {
-    title: "Task3",
+    title: "Finish CS6120 Assignment 1😁",
     description: "This is the third task",
     status: false,
     index: 2,
   },
   {
-    title: "Task4",
+    title: "Exercise for 60 minutes🏋️",
     description: "This is the fourth task",
     status: false,
     index: 3,
+  },
+  {
+    title: "Read a book for 30 minutes📚",
+    description: "This is the fifth task",
+    status: false,
+    index: 4,
   },
 ];
 export default function Index() {
