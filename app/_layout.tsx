@@ -7,7 +7,7 @@ export default function RootLayout() {
         name="index"
         options={{ title: "Home", headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="modal"
         options={{
           headerTitle: "Details",
@@ -18,7 +18,7 @@ export default function RootLayout() {
           headerShown: false,
           headerShadowVisible: false,
         }}
-      />
+      /> */}
     </Stack>
   );
 }

@@ -131,25 +131,11 @@ export default function Index() {
             onChangeText={setSearchQuery}
             value={searchQuery}
           />
-          {/* <TouchableOpacity onPress={() => onAddTask()}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
-        </TouchableOpacity> */}
         </View>
         <View style={styles.items}>
-          {/* <Task text="Task1 paramasd asdas asdasdasdsdadasdasddssssss" />
-          <Task text="Task2" /> */}
-
           {filteredTasks.map((task) => {
             return (
-              // <TouchableOpacity
-              //   key={index}
-              //   onPress={() => handleTaskClick(task)}
-              // >
-              //   <Task text={task.title} />
-              // </TouchableOpacity>
-              // <Task key={index} text={task.title} />
+              // <TouchableOpacity>
               <Task
                 key={task.index}
                 task={task}
@@ -157,21 +143,12 @@ export default function Index() {
                 updateTask={handleUpdateTask}
                 editTask={() => handleTaskClick2(task)}
               />
+              // </TouchableOpacity>
             );
           })}
         </View>
       </ScrollView>
 
-      {/* <TouchableOpacity
-        onPress={() => {
-          setModalVisible(true);
-          setTask({ title: "", description: "", status: false, index: -1 });
-        }}
-      >
-        <View style={styles.addWrapper}>
-          <Text style={styles.addText}>+</Text>
-        </View>
-      </TouchableOpacity> */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
